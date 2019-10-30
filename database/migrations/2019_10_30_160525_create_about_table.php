@@ -17,7 +17,7 @@ class CreateAboutTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('sub_title');
-            $table->string('text');
+            $table->string('description');
             $table->string('media_name');
             $table->string('meta_title');
             $table->string('meta_description');
