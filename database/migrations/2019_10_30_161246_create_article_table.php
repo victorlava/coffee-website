@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStoreTable extends Migration
+class CreateArticleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,14 @@ class CreateStoreTable extends Migration
      */
     public function up()
     {
-        Schema::create('store', function (Blueprint $table) {
+        Schema::create('article', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('sub_title');
-            $table->string('street');
-            $table->string('city');
-            $table->string('phone');
-            $table->string('sunday');
-            $table->string('monday');
-            $table->string('tuesday');
-            $table->string('wednesday');
-            $table->string('thursday');
-            $table->string('friday');
-            $table->string('saturday');
+            $table->string('text');
+            $table->string('media_name');
             $table->string('meta_title');
+            $table->string('seo_link');
             $table->string('meta_description');
             $table->timestamps();
         });
@@ -40,6 +33,6 @@ class CreateStoreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store');
+        Schema::dropIfExists('article');
     }
 }
