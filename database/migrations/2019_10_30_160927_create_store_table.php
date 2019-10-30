@@ -13,7 +13,7 @@ class CreateStoreTable extends Migration
      */
     public function up()
     {
-        Schema::create('store', function (Blueprint $table) {
+        Schema::create('stores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('sub_title');
@@ -40,6 +40,6 @@ class CreateStoreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store');
+        Schema::dropIfExists('stores');
     }
 }

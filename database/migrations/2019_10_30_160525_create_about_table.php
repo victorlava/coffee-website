@@ -13,7 +13,7 @@ class CreateAboutTable extends Migration
      */
     public function up()
     {
-        Schema::create('about', function (Blueprint $table) {
+        Schema::create('abouts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('sub_title');
@@ -32,6 +32,6 @@ class CreateAboutTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about');
+        Schema::dropIfExists('abouts');
     }
 }

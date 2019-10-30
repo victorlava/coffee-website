@@ -13,7 +13,7 @@ class CreateHomeTable extends Migration
      */
     public function up()
     {
-        Schema::create('home', function (Blueprint $table) {
+        Schema::create('homes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('sub_title');
@@ -34,6 +34,6 @@ class CreateHomeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('home');
+        Schema::dropIfExists('homes');
     }
 }
