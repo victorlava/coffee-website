@@ -31,7 +31,7 @@ class HomeController extends Controller
     $home = new Home();
     $home->title = $request->title;
     $home->sub_title = $request->sub_title;
-    $home->description = $request->home_description;
+    $home->description = $request->description;
     $home->button_text = $request->button_text;
     $home->button_link = $request->button_link;
     $home->meta_title = $request->meta_title;
