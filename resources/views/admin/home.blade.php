@@ -1,18 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<form class="" action="index.html" method="post">
+<form action="{{ route('admin.home.store') }}" method="post">
   <div class="container">
     <div class="row">
       <div class="col-md-9">
         <div class="card">
             <div class="card-header">Home Page</div>
             <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+
+                    @csrf
+
+                    {{--
+                      @if ($errors->any())
+                          <div class="alert alert-danger">
+                              <ul>
+                                  @foreach ($errors->all() as $error)
+                                      <li>{{ $error }}</li>
+                                  @endforeach
+                              </ul>
+                          </div>
+                      @endif
+                    --}}
 
                     <div class="row">
                       <div class="col-6">
@@ -24,14 +33,14 @@
                       <div class="col-6">
                         <div class="form-group">
                           <label for="title">Sub-title</label>
-                          <input type="text" class="form-control" name="title">
+                          <input type="text" class="form-control" name="sub_title">
                         </div>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-12">
-                        <input type="file" name="media_namne" class="form-control">
+                        <input type="file" name="media_name" class="form-control">
                         <br>
                       </div>
                     </div>
@@ -74,7 +83,7 @@
               <div class="card-header">Meta Information</div>
               <div class="card-body">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-12">
                     <div class="form-group">
                       <label for="title">Meta Title</label>
                       <input type="text" class="form-control" name="meta_title">
