@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Home;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,15 @@ class HomeController extends Controller
       'meta_description' => 'required|string|max:200',
     ]);
 
-    
+    $home = new Home();
+    $home->title = $request->title;
+    $home->sub_title = $request->sub_title;
+    $home->description = $request->home_description;
+    $home->button_text = $request->button_text;
+    $home->button_link = $request->button_link;
+    $home->meta_title = $request->meta_title;
+    $home->meta_description = $request->meta_description;
+    $home->save();
 
     // echo "Valid Form";
     // echo "storing data";
