@@ -27,7 +27,9 @@ class HomeController extends Controller
       'meta_description' => 'required|string|max:200',
     ]);
 
-    echo "Valid Form";
+    
+
+    // echo "Valid Form";
     // echo "storing data";
     /*
        1. Retrieve Data
