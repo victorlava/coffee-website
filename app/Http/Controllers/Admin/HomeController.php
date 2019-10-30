@@ -10,13 +10,14 @@ class HomeController extends Controller
 {
   public function index()
   {
-    return view('admin/home');
+
+    $home = Home::orderBy('created_at', 'desc')->first();
+
+    return view('admin/home', ['home' => $home]);
   }
 
   public function store(Request $request)
   {
-
-    // dd($request);
 
     $request->validate([
       'title' => 'required|string|max:100',
@@ -37,6 +38,8 @@ class HomeController extends Controller
     $home->meta_title = $request->meta_title;
     $home->meta_description = $request->meta_description;
     $home->save();
+
+    return redirect()->route('admin.home')->with('message', 'The data have been updated succesfully.');
 
     // echo "Valid Form";
     // echo "storing data";
