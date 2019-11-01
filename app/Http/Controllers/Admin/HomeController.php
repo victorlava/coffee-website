@@ -9,6 +9,7 @@ use App\Home;
 
 class HomeController extends Controller
 {
+
   public function index()
   {
 
@@ -17,7 +18,18 @@ class HomeController extends Controller
     $imageExists = Storage::disk('pages')->exists('home.jpg');
     $imageSize = ($imageExists) ? (int) round(Storage::disk('pages')->size('home.jpg') / 1000) : 0;
 
-    return view('admin/home', ['home' => $home, 'imageSize' => $imageSize]);
+    return view('admin/home/index', ['home' => $home, 'imageSize' => $imageSize]);
+  }
+
+  public function create()
+  {
+
+    $home = Home::orderBy('created_at', 'desc')->first();
+
+    $imageExists = Storage::disk('pages')->exists('home.jpg');
+    $imageSize = ($imageExists) ? (int) round(Storage::disk('pages')->size('home.jpg') / 1000) : 0;
+
+    return view('admin/home/create', ['home' => $home, 'imageSize' => $imageSize]);
   }
 
   public function store(Request $request)
@@ -48,6 +60,6 @@ class HomeController extends Controller
       $request->image->storeAs('/', 'home.jpg', 'pages');
     }
 
-    return redirect()->route('admin.home')->with('message', 'The data have been updated succesfully.');
+    return redirect()->route('admin.home.index')->with('message', 'The data have been updated succesfully.');
   }
 }
