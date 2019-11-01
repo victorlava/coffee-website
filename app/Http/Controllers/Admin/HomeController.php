@@ -14,8 +14,8 @@ class HomeController extends Controller
 
     $home = Home::orderBy('created_at', 'desc')->first();
 
-    $imageExists = Storage::disk('public')->exists('pages/home.jpg');
-    $imageSize = ($imageExists) ? (int) round(Storage::disk('public')->size('pages/home.jpg') / 1000) : 0;
+    $imageExists = Storage::disk('pages')->exists('home.jpg');
+    $imageSize = ($imageExists) ? (int) round(Storage::disk('pages')->size('home.jpg') / 1000) : 0;
 
     return view('admin/home', ['home' => $home, 'imageSize' => $imageSize]);
   }
@@ -45,7 +45,7 @@ class HomeController extends Controller
     $home->save();
 
     if($request->hasFile('image')) {
-      $request->image->storeAs('pages', 'home.jpg', 'public');
+      $request->image->storeAs('/', 'home.jpg', 'pages');
     }
 
     return redirect()->route('admin.home')->with('message', 'The data have been updated succesfully.');
