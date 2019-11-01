@@ -20,7 +20,6 @@ class CreateHomeTable extends Migration
             $table->string('description');
             $table->string('button_text');
             $table->string('button_link');
-            $table->string('media_name')->nullable();
             $table->string('meta_title');
             $table->string('meta_description');
             $table->timestamps();

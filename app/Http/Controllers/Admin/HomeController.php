@@ -30,7 +30,7 @@ class HomeController extends Controller
       'button_text' => 'required|string|max:20',
       'button_link' => 'required|url|max:2000',
       'meta_title' => 'required|string|max:100',
-      'media_name' => 'dimensions:min_width=300,min_height:300|max:512',
+      'image' => 'dimensions:min_width=300,min_height:300|max:512',
       'meta_description' => 'required|string|max:200',
     ]);
 
@@ -39,14 +39,13 @@ class HomeController extends Controller
     $home->sub_title = $request->sub_title;
     $home->description = $request->description;
     $home->button_text = $request->button_text;
-    $home->media_name = $request->media_name;
     $home->button_link = $request->button_link;
     $home->meta_title = $request->meta_title;
     $home->meta_description = $request->meta_description;
     $home->save();
 
-    if($request->hasFile('media_name')) {
-      $request->media_name->storeAs('pages', 'home.jpg', 'public');
+    if($request->hasFile('image')) {
+      $request->image->storeAs('pages', 'home.jpg', 'public');
     }
 
     return redirect()->route('admin.home')->with('message', 'The data have been updated succesfully.');

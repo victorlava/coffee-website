@@ -56,11 +56,11 @@
 
                     <div class="row">
                       <div class="col-12">
-                        <input type="file" name="media_name" class="form-control @error('media_name') is-invalid @enderror">
+                        <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
                         <p>The dimensions of the image should be atleast 300x300. The maximum allowed size is 512 kb.</p>
-                        @if ($errors->has('media_name'))
+                        @if ($errors->has('image'))
                         <div class="invalid-feedback">
-                          {{ $errors->first('media_name') }}
+                          {{ $errors->first('image') }}
                         </div>
                         @endif
                         <br>

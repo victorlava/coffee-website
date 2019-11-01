@@ -18,7 +18,7 @@ class CreateArticleTable extends Migration
             $table->string('title');
             $table->string('sub_title');
             $table->string('description');
-            $table->string('media_name');
+            $table->string('image');
             $table->string('meta_title');
             $table->string('seo_link');
             $table->string('meta_description');

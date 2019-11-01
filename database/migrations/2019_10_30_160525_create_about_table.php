@@ -18,7 +18,6 @@ class CreateAboutTable extends Migration
             $table->string('title');
             $table->string('sub_title');
             $table->string('description');
-            $table->string('media_name');
             $table->string('meta_title');
             $table->string('meta_description');
             $table->timestamps();
