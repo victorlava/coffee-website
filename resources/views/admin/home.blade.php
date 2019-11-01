@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="{{ route('admin.home.store') }}" method="post">
+<form action="{{ route('admin.home.store') }}" method="post" enctype="multipart/form-data">
   <div class="container">
     <div class="row">
       <div class="col-md-9">
@@ -56,7 +56,13 @@
 
                     <div class="row">
                       <div class="col-12">
-                        <input type="file" name="media_name" class="form-control">
+                        <input type="file" name="media_name" class="form-control @error('media_name') is-invalid @enderror">
+                        <p>The dimensions of the image should be atleast 300x300. The maximum allowed size is 512 kb.</p>
+                        @if ($errors->has('media_name'))
+                        <div class="invalid-feedback">
+                          {{ $errors->first('media_name') }}
+                        </div>
+                        @endif
                         <br>
                       </div>
                     </div>
@@ -104,7 +110,12 @@
                 </div>
             </div>
             <div class="col-3">
-              <img src="/" width="200" alt="image" class="img-thumbnail">
+              @if($imageSize != 0)
+              <img src="{{ asset('storage/pages/home.jpg') }}" width="400" alt="image" class="img-thumbnail">
+              <p>Image size is {{ $imageSize }} KB</p>
+              @else
+              <p>No Image attached</p>
+              @endif
             </div>
         </div>
     <br>

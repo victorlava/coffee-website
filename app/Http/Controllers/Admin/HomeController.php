@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Home;
@@ -13,7 +14,10 @@ class HomeController extends Controller
 
     $home = Home::orderBy('created_at', 'desc')->first();
 
-    return view('admin/home', ['home' => $home]);
+    $imageExists = Storage::disk('public')->exists('pages/home.jpg');
+    $imageSize = ($imageExists) ? (int) round(Storage::disk('public')->size('pages/home.jpg') / 1000) : 0;
+
+    return view('admin/home', ['home' => $home, 'imageSize' => $imageSize]);
   }
 
   public function store(Request $request)
@@ -26,6 +30,7 @@ class HomeController extends Controller
       'button_text' => 'required|string|max:20',
       'button_link' => 'required|url|max:2000',
       'meta_title' => 'required|string|max:100',
+      'media_name' => 'dimensions:min_width=300,min_height:300|max:512',
       'meta_description' => 'required|string|max:200',
     ]);
 
@@ -34,22 +39,16 @@ class HomeController extends Controller
     $home->sub_title = $request->sub_title;
     $home->description = $request->description;
     $home->button_text = $request->button_text;
+    $home->media_name = $request->media_name;
     $home->button_link = $request->button_link;
     $home->meta_title = $request->meta_title;
     $home->meta_description = $request->meta_description;
     $home->save();
 
+    if($request->hasFile('media_name')) {
+      $request->media_name->storeAs('pages', 'home.jpg', 'public');
+    }
+
     return redirect()->route('admin.home')->with('message', 'The data have been updated succesfully.');
-
-    // echo "Valid Form";
-    // echo "storing data";
-    /*
-       1. Retrieve Data
-       2. Validate Data
-       3. Save Data
-     */
-
-
-
   }
 }
