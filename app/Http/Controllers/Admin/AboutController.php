@@ -5,25 +5,24 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Home;
+use App\About;
 
-class HomeController extends Controller
+class AboutController extends Controller
 {
-
   public function index()
   {
 
-    $home = Home::first();
+    $about = About::first();
 
-    return view('admin/home/index', ['home' => $home, 'imageSize' => $this->getImageSize()]);
+    return view('admin/about/index', ['about' => $about, 'imageSize' => $this->getImageSize()]);
   }
 
   public function create()
   {
 
-    $home = Home::first();
+    $about = About::first();
 
-    return view('admin/home/create', ['home' => $home, 'imageSize' => $this->getImageSize()]);
+    return view('admin/about/create', ['about' => $about, 'imageSize' => $this->getImageSize()]);
   }
 
   public function store(Request $request)
@@ -33,16 +32,14 @@ class HomeController extends Controller
       'title' => 'required|string|max:100',
       'sub_title' => 'required|string|max:100',
       'description' => 'required|string|max:255',
-      'button_text' => 'required|string|max:20',
-      'button_link' => 'required|url|max:2000',
       'meta_title' => 'required|string|max:100',
-      'image' => 'dimensions:min_width=300,min_height:300|max:512',
       'meta_description' => 'required|string|max:200',
+      'image' => 'dimensions:min_width=300,min_height:300|max:512'
     ]);
 
-    $page = Home::first();
+    $page = About::first();
 
-    Home::updateOrCreate([
+    About::updateOrCreate([
       'id' => ($page) ? $page->id : 0
     ],[
       'title' => $request->title,
@@ -55,10 +52,10 @@ class HomeController extends Controller
     ]);
 
     if($request->hasFile('image')) {
-      $request->image->storeAs('/', 'home.jpg', 'pages');
+      $request->image->storeAs('/', 'about.jpg', 'pages');
     }
 
-    return redirect()->route('admin.home.index')->with('message', 'The data have been updated succesfully.');
+    return redirect()->route('admin.about.index')->with('message', 'The data have been updated succesfully.');
   }
 
   private function getImageSize() {

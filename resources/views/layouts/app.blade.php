@@ -37,6 +37,9 @@
                       <li class="nav-item">
                           <a class="nav-link" href="{{ route('admin.home.index') }}">{{ __('Home') }}</a>
                       </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ route('admin.about.index') }}">{{ __('About') }}</a>
+                      </li>
                       @endauth
                     </ul>
 
