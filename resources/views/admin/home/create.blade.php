@@ -33,7 +33,7 @@
                       <div class="col-6">
                         <div class="form-group">
                           <label for="title">Title</label>
-                          <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title', $home->title) }}">
+                          <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title', ($home) ? $home->title : '') }}">
                           @if ($errors->has('title'))
                           <div class="invalid-feedback">
                             {{ $errors->first('title') }}
@@ -44,7 +44,7 @@
                       <div class="col-6">
                         <div class="form-group">
                           <label for="title">Sub-title</label>
-                          <input type="text" class="form-control @error('sub_title') is-invalid @enderror" name="sub_title" value="{{ old('sub_title', $home->sub_title) }}">
+                          <input type="text" class="form-control @error('sub_title') is-invalid @enderror" name="sub_title" value="{{ old('sub_title', ($home) ? $home->sub_title : '') }}">
                           @if ($errors->has('sub_title'))
                           <div class="invalid-feedback">
                             {{ $errors->first('sub_title') }}
@@ -77,7 +77,7 @@
                     <div class="row">
                       <div class="col-12">
                         <label for="description">Description</label>
-                        <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="6">{{ old('title', $home->title) }}</textarea>
+                        <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="6">{{ old('title', ($home) ? $home->title : '') }}</textarea>
                         @if ($errors->has('description'))
                         <div class="invalid-feedback">
                           {{ $errors->first('description') }}
@@ -91,7 +91,7 @@
                       <div class="col-6">
                         <div class="form-group">
                           <label for="button_text">Button Text</label>
-                          <input type="text" class="form-control @error('button_text') is-invalid @enderror" name="button_text" value="{{ old('button_text', $home->button_text) }}">
+                          <input type="text" class="form-control @error('button_text') is-invalid @enderror" name="button_text" value="{{ old('button_text', ($home) ? $home->button_text : '') }}">
                           @if ($errors->has('button_text'))
                           <div class="invalid-feedback">
                             {{ $errors->first('button_text') }}
@@ -102,7 +102,7 @@
                       <div class="col-6">
                         <div class="form-group">
                           <label for="button_link">Button Link</label>
-                          <input type="text" class="form-control @error('button_link') is-invalid @enderror" name="button_link" value="{{ old('button_link', $home->button_link) }}">
+                          <input type="text" class="form-control @error('button_link') is-invalid @enderror" name="button_link" value="{{ old('button_link', ($home) ? $home->button_link : '') }}">
                           @if ($errors->has('button_link'))
                           <div class="invalid-feedback">
                             {{ $errors->first('button_link') }}
@@ -127,7 +127,7 @@
                   <div class="col-12">
                     <div class="form-group">
                       <label for="title">Meta Title</label>
-                      <input type="text" class="form-control @error('meta_title') is-invalid @enderror" name="meta_title" value="{{ old('meta_title', $home->meta_title) }}">
+                      <input type="text" class="form-control @error('meta_title') is-invalid @enderror" name="meta_title" value="{{ old('meta_title', ($home) ? $home->meta_title : '') }}">
                       @if ($errors->has('meta_title'))
                       <div class="invalid-feedback">
                         {{ $errors->first('meta_title') }}
@@ -140,7 +140,7 @@
                 <div class="row">
                   <div class="col-12">
                     <label for="meta_description">Meta Description</label>
-                    <textarea class="form-control @error('meta_description') is-invalid @enderror" rows="6" name="meta_description">{{ old('meta_description', $home->meta_description) }}</textarea>
+                    <textarea class="form-control @error('meta_description') is-invalid @enderror" rows="6" name="meta_description">{{ old('meta_description', ($home) ? $home->meta_description : '') }}</textarea>
                     @if ($errors->has('meta_description'))
                     <div class="invalid-feedback">
                       {{ $errors->first('meta_description') }}

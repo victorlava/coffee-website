@@ -15,10 +15,7 @@ class HomeController extends Controller
 
     $home = Home::orderBy('created_at', 'desc')->first();
 
-    $imageExists = Storage::disk('pages')->exists('home.jpg');
-    $imageSize = ($imageExists) ? (int) round(Storage::disk('pages')->size('home.jpg') / 1000) : 0;
-
-    return view('admin/home/index', ['home' => $home, 'imageSize' => $imageSize]);
+    return view('admin/home/index', ['home' => $home, 'imageSize' => $this->getImageSize()]);
   }
 
   public function create()
@@ -26,10 +23,7 @@ class HomeController extends Controller
 
     $home = Home::orderBy('created_at', 'desc')->first();
 
-    $imageExists = Storage::disk('pages')->exists('home.jpg');
-    $imageSize = ($imageExists) ? (int) round(Storage::disk('pages')->size('home.jpg') / 1000) : 0;
-
-    return view('admin/home/create', ['home' => $home, 'imageSize' => $imageSize]);
+    return view('admin/home/create', ['home' => $home, 'imageSize' => $this->getImageSize()]);
   }
 
   public function store(Request $request)
@@ -62,4 +56,10 @@ class HomeController extends Controller
 
     return redirect()->route('admin.home.index')->with('message', 'The data have been updated succesfully.');
   }
+
+  private function getImageSize() {
+    $imageExists = Storage::disk('pages')->exists('home.jpg');
+    return ($imageExists) ? (int) round(Storage::disk('pages')->size('home.jpg') / 1000) : 0;
+  }
+  
 }

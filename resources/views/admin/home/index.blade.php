@@ -2,10 +2,12 @@
 
 @section('content')
 <div class="container">
+    <h1>Home Page</h1>
+    @if($home)
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-            <div class="card-header">Home Page</div>
+            <div class="card-header">Page Data</div>
             <div class="card-body">
 
               @if (session('message'))
@@ -26,6 +28,9 @@
                 </div>
                 <div class="col-12">
                   {{ $home->description }}
+                </div>
+                <div class="col-12">
+                  <a href="{{ $home->button_link }}" target="_blank" class="btn btn-secondary">{{ $home->button_text }}</a>
                 </div>
               </div>
 
@@ -50,6 +55,9 @@
 
           </div>
       </div>
+      @else
+      <h4>Page is empty, fill the data.</h4>
+      @endif
       <div class="row">
         <div class="col-12 mt-3">
           <a href="{{ route('admin.home.create') }}" class="btn btn-secondary btn-block btn-lg">Edit</a>
