@@ -40,15 +40,19 @@ class HomeController extends Controller
       'meta_description' => 'required|string|max:200',
     ]);
 
-    $home = new Home();
-    $home->title = $request->title;
-    $home->sub_title = $request->sub_title;
-    $home->description = $request->description;
-    $home->button_text = $request->button_text;
-    $home->button_link = $request->button_link;
-    $home->meta_title = $request->meta_title;
-    $home->meta_description = $request->meta_description;
-    $home->save();
+    $page = Home::orderBy('created_at', 'desc')->first();
+
+    Home::updateOrCreate([
+      'id' => ($page) ? $page->id : 0
+    ],[
+      'title' => $request->title,
+      'sub_title' => $request->sub_title,
+      'description' => $request->description,
+      'button_text' => $request->button_text,
+      'button_link' => $request->button_link,
+      'meta_title' => $request->meta_title,
+      'meta_description' => $request->meta_description
+    ]);
 
     if($request->hasFile('image')) {
       $request->image->storeAs('/', 'home.jpg', 'pages');
@@ -61,5 +65,5 @@ class HomeController extends Controller
     $imageExists = Storage::disk('pages')->exists('home.jpg');
     return ($imageExists) ? (int) round(Storage::disk('pages')->size('home.jpg') / 1000) : 0;
   }
-  
+
 }

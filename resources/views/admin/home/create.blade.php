@@ -32,7 +32,7 @@
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
-                          <label for="title">Title</label>
+                          <label for="title">Title:</label>
                           <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title', ($home) ? $home->title : '') }}">
                           @if ($errors->has('title'))
                           <div class="invalid-feedback">
@@ -40,10 +40,8 @@
                           </div>
                           @endif
                         </div>
-                      </div>
-                      <div class="col-6">
                         <div class="form-group">
-                          <label for="title">Sub-title</label>
+                          <label for="sub_title">Sub-title:</label>
                           <input type="text" class="form-control @error('sub_title') is-invalid @enderror" name="sub_title" value="{{ old('sub_title', ($home) ? $home->sub_title : '') }}">
                           @if ($errors->has('sub_title'))
                           <div class="invalid-feedback">
@@ -51,32 +49,30 @@
                           </div>
                           @endif
                         </div>
+                        <div class="form-group">
+                          <label for="image">Image:</label>
+                          <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+                          <p class="mt-3">The dimensions of the image should be atleast <strong>300x300</strong>. The maximum allowed size is <strong>512 KB</strong>.</p>
+                          @if ($errors->has('image'))
+                          <div class="invalid-feedback">
+                            {{ $errors->first('image') }}
+                          </div>
+                          @endif
+                        </div>
                       </div>
-                    </div>
-
-                    <div class="row mt-3">
                       <div class="col-6">
                         @if($imageSize != 0)
-                        <img src="{{ asset('storage/pages/home.jpg') }}" width="400" alt="image" class="img-thumbnail">
-                        <p class="mt-3">Image size is {{ $imageSize }} KB</p>
+                        <img src="{{ asset('storage/pages/home.jpg') }}" width="500" alt="image" class="img-thumbnail">
+                        <p class="mt-3">Image size is <strong>{{ $imageSize }} KB</strong></p>
                         @else
                         <p class="mt-3">No Image attached</p>
-                        @endif
-                      </div>
-                      <div class="col-6">
-                        <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
-                        <p class="mt-3">The dimensions of the image should be atleast 300x300. The maximum allowed size is 512 kb.</p>
-                        @if ($errors->has('image'))
-                        <div class="invalid-feedback">
-                          {{ $errors->first('image') }}
-                        </div>
                         @endif
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-12">
-                        <label for="description">Description</label>
+                        <label for="description">Description:</label>
                         <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="6">{{ old('title', ($home) ? $home->title : '') }}</textarea>
                         @if ($errors->has('description'))
                         <div class="invalid-feedback">
@@ -90,7 +86,7 @@
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
-                          <label for="button_text">Button Text</label>
+                          <label for="button_text">Button Text:</label>
                           <input type="text" class="form-control @error('button_text') is-invalid @enderror" name="button_text" value="{{ old('button_text', ($home) ? $home->button_text : '') }}">
                           @if ($errors->has('button_text'))
                           <div class="invalid-feedback">
@@ -101,7 +97,7 @@
                       </div>
                       <div class="col-6">
                         <div class="form-group">
-                          <label for="button_link">Button Link</label>
+                          <label for="button_link">Button Link:</label>
                           <input type="text" class="form-control @error('button_link') is-invalid @enderror" name="button_link" value="{{ old('button_link', ($home) ? $home->button_link : '') }}">
                           @if ($errors->has('button_link'))
                           <div class="invalid-feedback">
@@ -126,7 +122,7 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
-                      <label for="title">Meta Title</label>
+                      <label for="title">Meta Title:</label>
                       <input type="text" class="form-control @error('meta_title') is-invalid @enderror" name="meta_title" value="{{ old('meta_title', ($home) ? $home->meta_title : '') }}">
                       @if ($errors->has('meta_title'))
                       <div class="invalid-feedback">
@@ -139,7 +135,7 @@
 
                 <div class="row">
                   <div class="col-12">
-                    <label for="meta_description">Meta Description</label>
+                    <label for="meta_description">Meta Description:</label>
                     <textarea class="form-control @error('meta_description') is-invalid @enderror" rows="6" name="meta_description">{{ old('meta_description', ($home) ? $home->meta_description : '') }}</textarea>
                     @if ($errors->has('meta_description'))
                     <div class="invalid-feedback">
