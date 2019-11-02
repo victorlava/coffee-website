@@ -13,16 +13,19 @@ class AboutController extends Controller
   {
 
     $about = About::first();
+    $imageSize = $this->getImageSize();
 
-    return view('admin/about/index', ['about' => $about, 'imageSize' => $this->getImageSize()]);
+    // compact('about', 'imageSize') === ['about' => $about, 'imageSize' => $imageSize];
+    return view('admin/about/index', compact('about', 'imageSize'));
   }
 
   public function create()
   {
 
     $about = About::first();
+    $imageSize = $this->getImageSize();
 
-    return view('admin/about/create', ['about' => $about, 'imageSize' => $this->getImageSize()]);
+    return view('admin/about/create', compact('about', 'imageSize'));
   }
 
   public function store(Request $request)
