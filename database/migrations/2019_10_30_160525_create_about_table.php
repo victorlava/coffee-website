@@ -20,7 +20,6 @@ class CreateAboutTable extends Migration
             $table->string('description');
             $table->string('meta_title');
             $table->string('meta_description');
-            $table->timestamps();
         });
     }
 

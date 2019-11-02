@@ -29,7 +29,6 @@ class CreateStoreTable extends Migration
             $table->string('saturday');
             $table->string('meta_title');
             $table->string('meta_description');
-            $table->timestamps();
         });
     }
 

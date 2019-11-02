@@ -22,7 +22,6 @@ class CreateHomeTable extends Migration
             $table->string('button_link');
             $table->string('meta_title');
             $table->string('meta_description');
-            $table->timestamps();
         });
     }
 
