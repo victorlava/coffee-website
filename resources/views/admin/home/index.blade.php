@@ -3,56 +3,33 @@
 @section('content')
 <div class="container">
     <h1>Home Page</h1>
+
     @if($home)
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">Page Data</div>
-            <div class="card-body">
+          @card(['header' => "Page Data"])
 
-              @if (session('message'))
-                  <div class="alert alert-success">
-                      {{ session('message') }}
-                  </div>
-              @endif
+            @alert
+            @endalert
 
-              <div class="row">
-                <div class="col-12 mb-3">
-                  <img src="{{ asset('storage/pages/home.jpg') }}" width="400" alt="image" class="img-thumbnail">
-                </div>
-                <div class="col-12">
-                    <h1>{{ $home->title }}</h1>
-                </div>
-                <div class="col-12 mb-3">
-                  <h4>{{ $home->sub_title }}</h4>
-                </div>
-                <div class="col-12">
-                  {{ $home->description }}
-                </div>
-                <div class="col-12">
-                  <a href="{{ $home->button_link }}" target="_blank" class="btn btn-secondary">{{ $home->button_text }}</a>
-                </div>
+            <div class="row">
+              @infopage(['title' => $home->title,
+                         'sub_title' => $home->sub_title,
+                         'description' => $home->description,
+                         'image' => asset('storage/pages/home.jpg')])
+              @endinfopage
+              <div class="col-12">
+                <a href="{{ $home->button_link }}" target="_blank" class="btn btn-secondary">{{ $home->button_text }}</a>
               </div>
-
             </div>
-          </div>
+          @endcard
         </div>
       </div>
       <div class="row mt-3">
         <div class="col-12">
-          <div class="card">
-              <div class="card-header">Meta Information</div>
-              <div class="card-body">
-                  <div class="col-12">
-                      <p><strong>Meta Title:</strong> {{ $home->meta_title }}</p>
-                  </div>
-                  <div class="col-12 mb-3">
-                    <p><strong>Meta Description:</strong> {{ $home->meta_description }}</p>
-                  </div>
-                </div>
-
-            </div>
-
+          @infometa([ 'title' => $home->meta_title,
+                      'description' => $home->meta_description])
+          @endinfometa
           </div>
       </div>
       @else
